@@ -27,7 +27,7 @@ mod body;
 #[cfg(test)]
 mod tests;
 
-pub struct Cbor<T>(T);
+pub struct Cbor<T>(pub T);
 
 impl<T> Cbor<T> {
     /// Deconstruct to an inner value
