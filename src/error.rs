@@ -46,7 +46,7 @@ impl Display for CborPayloadError {
             CborPayloadError::Overflow => writeln!(f, "Cbor payload size is bigger than allowed"),
             CborPayloadError::ContentType => writeln!(f, "Content type error"),
             CborPayloadError::Deserialize(inner) => {
-                writeln!(f, "Json deserialize error: {}", inner)
+                writeln!(f, "CBOR deserialize error: {}", inner)
             }
             CborPayloadError::Payload(inner) => {
                 writeln!(f, "Error that occur during reading payload: {:?}", inner)
@@ -57,7 +57,7 @@ impl Display for CborPayloadError {
 
 impl Error for CborPayloadError {}
 
-/// Return `BadRequest` for `JsonPayloadError`
+/// Return `BadRequest` for `CborPayloadError`
 impl ResponseError for CborPayloadError {
     fn error_response(&self) -> HttpResponse {
         match *self {

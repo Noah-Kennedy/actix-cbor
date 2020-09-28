@@ -90,7 +90,7 @@ impl<T> FromRequest for Cbor<T> where T: DeserializeOwned + 'static {
             .map(move |res| match res {
                 Err(e) => {
                     log::debug!(
-                        "Failed to deserialize Json from payload. \
+                        "Failed to deserialize CBOR from payload. \
                          Request path: {}",
                         req2.path()
                     );
