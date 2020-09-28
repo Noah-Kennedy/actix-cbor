@@ -1,8 +1,16 @@
 [package]
 name = "actix-cbor"
 version = "0.1.0"
-authors = ["noah <nomaxx117@gmail.com>"]
+authors = ["noah <noah.kennedy.professional@gmail.com>"]
 edition = "2018"
+description = "CBOR support for Actix-Web"
+readme = "README.md"
+repository = "https://github.com/Noah-Kennedy/actix-cbor"
+license = "MIT OR Apache-2.0"
+keywords = ["serde", "actix", "cbor", "web", "async"]
+categories = ["encoding", "web-programming", "compression", "asynchronous"]
+exclude = ["CHANGELOG.md"]
+publish = true
 
 [features]
 compress = ["actix-web/compress"]
