@@ -16,7 +16,7 @@ pub struct CborConfig {
     pub(crate) limit: usize,
     pub(crate) err_handler: Option<Arc<dyn Fn(CborPayloadError, &HttpRequest) -> actix_web::Error
     + Send + Sync>>,
-    pub(crate) content_type: Option<Arc<dyn Fn(mime::Mime) -> bool + Send + Sync>>,
+    pub(crate) content_type: Option<Arc<dyn Fn(&str) -> bool + Send + Sync>>,
 }
 
 impl Default for CborConfig {
@@ -42,9 +42,9 @@ impl CborConfig {
     }
 
     /// Set predicate for allowed content types
-    pub fn content_type<F>(mut self, predicate: F) -> Self
+    pub fn content_type_raw<F>(mut self, predicate: F) -> Self
         where
-            F: Fn(mime::Mime) -> bool + Send + Sync + 'static,
+            F: Fn(&str) -> bool + Send + Sync + 'static,
     {
         self.content_type = Some(Arc::new(predicate));
         self

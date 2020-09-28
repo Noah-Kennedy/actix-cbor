@@ -43,18 +43,16 @@ impl<U> CborBody<U>
     pub fn new(
         req: &HttpRequest,
         payload: &mut Payload,
-        ctype: Option<Arc<dyn Fn(mime::Mime) -> bool + Send + Sync>>,
+        ctype: Option<Arc<dyn Fn(&str) -> bool + Send + Sync>>,
     ) -> Self {
         // check content-type
-        let json = if let Ok(Some(mime)) = req.mime_type() {
-            mime.subtype() == mime::JSON
-                || mime.suffix() == Some(mime::JSON)
-                || ctype.as_ref().map_or(false, |predicate| predicate(mime))
-        } else {
-            false
-        };
+        let mime = req.content_type();
+        let is_good_mime =
+            mime == "application/cbor"
+                || mime == "cbor"
+                || ctype.as_ref().map_or(false, |predicate| predicate(mime));
 
-        if !json {
+        if !is_good_mime {
             return CborBody {
                 limit: 262_144,
                 length: None,

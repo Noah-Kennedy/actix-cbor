@@ -1,3 +1,7 @@
+#[cfg(test)]
+#[macro_use]
+extern crate serde;
+
 use std::fmt;
 use std::ops::{Deref, DerefMut};
 
@@ -19,6 +23,9 @@ pub use error::*;
 mod error;
 mod config;
 mod body;
+
+#[cfg(test)]
+mod tests;
 
 pub struct Cbor<T>(T);
 
