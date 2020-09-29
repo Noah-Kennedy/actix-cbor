@@ -15,13 +15,13 @@ use serde::de::DeserializeOwned;
 
 use crate::CborPayloadError;
 
-/// Request's payload json parser, it resolves to a deserialized `T` value.
+/// Request's payload cbor parser, it resolves to a deserialized `T` value.
 /// This future could be used with `ServiceRequest` and `ServiceFromRequest`.
 ///
 /// Returns error:
 ///
-/// * content type is not `application/json`
-///   (unless specified in [`JsonConfig`](struct.JsonConfig.html))
+/// * content type is not `application/cbor`
+///   (unless specified in [`CborConfig`](struct.CborConfig.html))
 /// * content length is greater than 256k
 pub struct CborBody<U> {
     pub(crate) limit: usize,
@@ -38,7 +38,7 @@ impl<U> CborBody<U>
     where
         U: DeserializeOwned + 'static,
 {
-    /// Create `JsonBody` for request.
+    /// Create `CborBody` for request.
     pub fn new(
         req: &HttpRequest,
         payload: &mut Payload,
