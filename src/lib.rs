@@ -27,6 +27,30 @@ mod body;
 #[cfg(test)]
 mod tests;
 
+/// Extractor/Responder for CBOR encoded data.
+///
+/// This will encode data with the content-type `application/cbor`.
+///
+/// By default, it expects to receive data with that content-type as well.
+///
+/// # Example
+/// ```
+/// use actix_cbor::Cbor;
+///
+/// struct User {
+///     name: String,
+/// }
+/// struct Greeting {
+///     inner: String,
+/// }
+///
+/// #[get("/users/hello")]
+/// pub async fn greet_user(user: Cbor<User>) -> Cbor<Greeting> {
+///     let name: &str = &user.name;
+///     let inner: String = format!("Hello {}!", name);
+///     Cbor(Greeting { inner })
+/// }
+/// ```
 pub struct Cbor<T>(pub T);
 
 impl<T> Cbor<T> {
