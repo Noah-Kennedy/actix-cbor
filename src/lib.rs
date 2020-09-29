@@ -1,3 +1,22 @@
+//! # Example
+//! ```
+//! use actix_cbor::Cbor;
+//!
+//! struct User {
+//!     name: String,
+//! }
+//! struct Greeting {
+//!     inner: String,
+//! }
+//!
+//! #[get("/users/hello")]
+//! pub async fn greet_user(user: Cbor<User>) -> Cbor<Greeting> {
+//!     let name: &str = &user.name;
+//!     let inner: String = format!("Hello {}!", name);
+//!     Cbor(Greeting { inner })
+//! }
+//! ```
+
 #[cfg(test)]
 #[macro_use]
 extern crate serde;
