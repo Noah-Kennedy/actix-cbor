@@ -10,7 +10,7 @@ license = "MIT OR Apache-2.0"
 keywords = ["serde", "actix", "cbor", "web", "async"]
 categories = ["encoding", "web-programming", "compression", "asynchronous"]
 exclude = ["CHANGELOG.md"]
-publish = true
+publish = false
 
 [features]
 compress = ["actix-web/compress"]
