@@ -1,6 +1,6 @@
 [package]
 name = "actix-cbor"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["noah <noah.kennedy.professional@gmail.com>"]
 edition = "2018"
 description = "CBOR support for Actix-Web"
@@ -27,9 +27,6 @@ bytes = "0.5.6"
 [dependencies.actix-web]
 version = "^3.0.0"
 default-features = false
-
-[dev-dependencies]
-mime = "0.3.16"
 
 [dev-dependencies.serde]
 version = "^1.0.0"
